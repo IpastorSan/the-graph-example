@@ -56,7 +56,7 @@ source .env
 ```
 Run on local node
 ```bash
-forge script script/Deploy.s.sol:Deploy --fork-url http://localhost:8545  --private-key $PRIVATE_KEY --broadcast 
+forge script script/DeployLocal.s.sol:Deploy --fork-url http://localhost:8545  --private-key $PRIVATE_KEY --broadcast 
 ```
 
 **Deploy to Sepolia**

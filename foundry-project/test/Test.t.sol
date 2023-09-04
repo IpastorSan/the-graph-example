@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+/* // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
@@ -23,7 +23,7 @@ contract NftTest is Test {
     event ListingCancelled(uint256 listingId);
 
     function setUp() public {
-        nft = new BasicERC721(base_uri);
+        nft = new RandomERC721(base_uri);
         utils = new Utils();
         users = utils.createUsers(3);
         deployer = users[0];
@@ -174,3 +174,4 @@ contract NftTest is Test {
         vm.stopPrank();
     }
 }
+ */

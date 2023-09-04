@@ -39,6 +39,8 @@ contract ObjectMarketplace is ISimpleMarketplace, Ownable {
         _marketplaceFeePoints = fee;
     }
 
+    receive() external payable {}
+
     /// @notice creates new listing
     /**
      * @dev anyone can call this function
