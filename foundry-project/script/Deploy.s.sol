@@ -3,7 +3,7 @@ pragma solidity 0.8.20;
 
 import "forge-std/Script.sol";
 import "../src/ObjectMarketplace.sol";
-import "../RandomERC721.sol";
+import "../src/RandomERC721.sol";
 
 contract Deploy is Script {
     ObjectMarketplace public marketplace;
@@ -32,6 +32,13 @@ contract Deploy is Script {
         nft.transferFrom(address(this), alice, 5);
         nft.transferFrom(address(this), bob, 6);
 
+        //Approve the marketplace to spend the NFTs
+        nft.setApprovalForAll(address(marketplace), true);
+        vm.prank(alice);
+        nft.setApprovalForAll(address(marketplace), true);
+        vm.prank(bob);
+        nft.setApprovalForAll(address(marketplace), true);
+        
         //create new listings
         marketplace.createListing(adress(nft), 0, 1 ether); //listingId 1
         marketplace.createListing(adress(nft), 1, 0.5 ether); //listingId 2
