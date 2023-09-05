@@ -72,4 +72,7 @@ interface ISimpleMarketplace {
      * @param price new price of listing
     */
     function updateListing(uint256 listingId, uint256 price) external;
+
+    /// @notice allows to withdraw funds from the contract by owner
+    function withdraw() external;
 }

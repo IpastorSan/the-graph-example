@@ -2,11 +2,11 @@
 pragma solidity 0.8.20;
 
 import "forge-std/Script.sol";
-import "../src/ObjectMarketplace.sol";
+import "../src/SimpleMarketplace.sol";
 import "../src/RandomERC721.sol";
 
 contract Deploy is Script {
-    ObjectMarketplace public marketplace;
+    SimpleMarketplace public marketplace;
     RandomERC721 public nft;
 
     address public deployer;
@@ -30,7 +30,7 @@ contract Deploy is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         nft = new RandomERC721(); //10 NFTs minted to the deployer
-        marketplace = new ObjectMarketplace(100);
+        marketplace = new SimpleMarketplace(100);
 
         //Move around some NFTs
         nft.transferFrom(deployer, alice, 3);

@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 import "./interfaces/ISimpleMarketplace.sol";
 
-contract ObjectMarketplace is ISimpleMarketplace, Ownable {
+contract SimpleMarketplace is ISimpleMarketplace, Ownable {
     
     using ERC165Checker for address;
     //Keeps track of total listings ever generated
