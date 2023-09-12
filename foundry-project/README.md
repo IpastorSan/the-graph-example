@@ -56,7 +56,7 @@ source .env
 ```
 Run on local node
 ```bash
-forge script script/DeployLocal.s.sol:Deploy --fork-url http://localhost:8545  --private-key $PRIVATE_KEY --broadcast 
+forge script script/DeployLocal.s.sol:Deploy --fork-url http://localhost:8545  --private-key $PRIVATE_KEY_DEPLOYER --broadcast 
 ```
 
 **Deploy to Sepolia**
@@ -68,5 +68,5 @@ source .env
 ```
 Deploy to Sepolia and verify
 ```bash
-forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_KEY  --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv
+forge script script/DeployTestnet.s.sol:Deploy --rpc-url $RPC_URL  --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
 ```
