@@ -1,0 +1,36 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SimpleMarketplace
+    network: sepolia
+    source:
+      address: "0xf91C1bfb2dbAcbfBD39a171eF0Cd3E3b47893099"
+      abi: SimpleMarketplace
+      startBlock: 4233781
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ItemSold
+        - ListingCancelled
+        - ListingCreated
+        - ListingUpdated
+        - OwnershipTransferred
+      abis:
+        - name: SimpleMarketplace
+          file: ./abis/SimpleMarketplace.json
+      eventHandlers:
+        - event: ItemSold(uint256,address,address,address,uint256)
+          handler: handleItemSold
+        - event: ListingCancelled(uint256)
+          handler: handleListingCancelled
+        - event: ListingCreated(uint256,address,address,uint256,uint256,bool)
+          handler: handleListingCreated
+        - event: ListingUpdated(uint256,address,address,uint256,uint256)
+          handler: handleListingUpdated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/simple-marketplace.ts

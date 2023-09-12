@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "SimpleMarketplace": {
+      "address": "0xf91C1bfb2dbAcbfBD39a171eF0Cd3E3b47893099",
+      "startBlock": 4233781
+    }
+  }
+}

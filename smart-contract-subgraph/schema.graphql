@@ -1,0 +1,53 @@
+type ItemSold @entity(immutable: true) {
+  id: Bytes!
+  listingId: BigInt! # uint256
+  nft: Bytes! # address
+  seller: Bytes! # address
+  buyer: Bytes! # address
+  price: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ListingCancelled @entity(immutable: true) {
+  id: Bytes!
+  listingId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ListingCreated @entity(immutable: true) {
+  id: Bytes!
+  listingId: BigInt! # uint256
+  seller: Bytes! # address
+  nft: Bytes! # address
+  tokenId: BigInt! # uint256
+  price: BigInt! # uint256
+  exist: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ListingUpdated @entity(immutable: true) {
+  id: Bytes!
+  listingId: BigInt! # uint256
+  seller: Bytes! # address
+  nft: Bytes! # address
+  tokenId: BigInt! # uint256
+  price: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
