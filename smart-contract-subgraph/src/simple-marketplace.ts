@@ -3,20 +3,16 @@ import {
   ListingCancelled as ListingCancelledEvent,
   ListingCreated as ListingCreatedEvent,
   ListingUpdated as ListingUpdatedEvent,
-  OwnershipTransferred as OwnershipTransferredEvent
 } from "../generated/SimpleMarketplace/SimpleMarketplace"
 import {
   ItemSold,
-  ListingCancelled,
-  ListingCreated,
-  ListingUpdated,
-  OwnershipTransferred
+  Listing
 } from "../generated/schema"
+import { store } from '@graphprotocol/graph-ts'
 
 export function handleItemSold(event: ItemSoldEvent): void {
-  let entity = new ItemSold(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
+  let entity = new ItemSold(event.params.listingId.toString())
+
   entity.listingId = event.params.listingId
   entity.nft = event.params.nft
   entity.seller = event.params.seller
@@ -28,25 +24,24 @@ export function handleItemSold(event: ItemSoldEvent): void {
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+
+  store.remove("Listing", event.params.listingId.toString())
 }
 
 export function handleListingCancelled(event: ListingCancelledEvent): void {
-  let entity = new ListingCancelled(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.listingId = event.params.listingId
+  let entity: Listing | null
+  entity = Listing.load(event.params.listingId.toString())
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  if (entity!== null){
+    store.remove("Listing", event.params.listingId.toString())
+  }
 
-  entity.save()
 }
 
 export function handleListingCreated(event: ListingCreatedEvent): void {
-  let entity = new ListingCreated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
+  let entity: Listing | null
+  entity = new Listing(event.params.listingId.toString())
+  
   entity.listingId = event.params.listingId
   entity.seller = event.params.seller
   entity.nft = event.params.nft
@@ -62,34 +57,22 @@ export function handleListingCreated(event: ListingCreatedEvent): void {
 }
 
 export function handleListingUpdated(event: ListingUpdatedEvent): void {
-  let entity = new ListingUpdated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.listingId = event.params.listingId
-  entity.seller = event.params.seller
-  entity.nft = event.params.nft
-  entity.tokenId = event.params.tokenId
-  entity.price = event.params.price
+  let entity: Listing | null
+  entity = Listing.load(event.params.listingId.toString())
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  if(entity !== null){
+    entity.listingId = event.params.listingId
+    entity.seller = event.params.seller
+    entity.nft = event.params.nft
+    entity.tokenId = event.params.tokenId
+    entity.price = event.params.price
+  
+    entity.blockNumber = event.block.number
+    entity.blockTimestamp = event.block.timestamp
+    entity.transactionHash = event.transaction.hash
+  
+    entity.save()
+  }
 
-  entity.save()
 }
 
-export function handleOwnershipTransferred(
-  event: OwnershipTransferredEvent
-): void {
-  let entity = new OwnershipTransferred(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.previousOwner = event.params.previousOwner
-  entity.newOwner = event.params.newOwner
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}

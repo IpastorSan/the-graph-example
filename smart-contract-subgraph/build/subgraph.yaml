@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: SimpleMarketplace
@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xd4DEca77F965C3c42FB278C2Cb0C51dF8551C049"
       abi: SimpleMarketplace
-      startBlock: 4430868
+      startBlock: 4233781
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -18,7 +18,7 @@ dataSources:
         - Listing
       abis:
         - name: SimpleMarketplace
-          file: ./abis/SimpleMarketplace.json
+          file: SimpleMarketplace/abis/SimpleMarketplace.json
       eventHandlers:
         - event: ItemSold(uint256,address,address,address,uint256)
           handler: handleItemSold
@@ -28,4 +28,4 @@ dataSources:
           handler: handleListingCreated
         - event: ListingUpdated(uint256,address,address,uint256,uint256)
           handler: handleListingUpdated
-      file: ./src/simple-marketplace.ts
+      file: SimpleMarketplace/SimpleMarketplace.wasm

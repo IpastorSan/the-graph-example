@@ -5,7 +5,6 @@ import {
   ListingCancelled,
   ListingCreated,
   ListingUpdated,
-  OwnershipTransferred
 } from "../generated/SimpleMarketplace/SimpleMarketplace"
 
 export function createItemSoldEvent(
@@ -134,25 +133,3 @@ export function createListingUpdatedEvent(
   return listingUpdatedEvent
 }
 
-export function createOwnershipTransferredEvent(
-  previousOwner: Address,
-  newOwner: Address
-): OwnershipTransferred {
-  let ownershipTransferredEvent = changetype<OwnershipTransferred>(
-    newMockEvent()
-  )
-
-  ownershipTransferredEvent.parameters = new Array()
-
-  ownershipTransferredEvent.parameters.push(
-    new ethereum.EventParam(
-      "previousOwner",
-      ethereum.Value.fromAddress(previousOwner)
-    )
-  )
-  ownershipTransferredEvent.parameters.push(
-    new ethereum.EventParam("newOwner", ethereum.Value.fromAddress(newOwner))
-  )
-
-  return ownershipTransferredEvent
-}

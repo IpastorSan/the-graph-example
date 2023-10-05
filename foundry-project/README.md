@@ -9,8 +9,8 @@ This should NOT be used for any production NFT marketplace, as it only has the b
 The project is made of the smart contract, a deployment script that will also simulate activity in the marketplace (listing, updating, canceling and buying) and some basic tests. The events emited by each of these actions will be picked up by our custom Subgraph so we will be able to query and get the state of the marketplace as a whole (each individual listing and its current state). This is useful to create UIs that would allow user interaction, using the smart contracts and the Graph, anyone could build on top and make their own version of the marketplace (again, not recommending it for this specific implementation).
 
 The contracts and Subgraph will be deployed in the Sepolia network
-- marketplace address:
-- mock nft address: 
+- marketplace address: 0xd4DEca77F965C3c42FB278C2Cb0C51dF8551C049
+- mock nft address: 0x3bAD430f16F8de999E1452d53d3B6328cA82A009
 - subgraph link: []() 
 
 ## Instructions.
