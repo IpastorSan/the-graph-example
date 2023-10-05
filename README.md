@@ -1,4 +1,4 @@
-# Example Subgraph for a simple marketplace smart contract
+# Example Subgraph for a simple NFT marketplace smart contract
 
 This is the partner repository for the article on how to create your own subgraph [Article]()
 
